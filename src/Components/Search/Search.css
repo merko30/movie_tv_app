@@ -1,0 +1,29 @@
+@import '../../main.css';
+
+.search-input {
+    width: 0;
+    outline: none;
+    border: 2px solid transparent;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    color: inherit!important;
+    background-color: transparent;
+  }
+  
+  .search-container {
+    margin: 3em 0 1em 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .search-container > .fa{
+    cursor: pointer;
+    color:  rgb(167, 111, 60);
+  }
+  
+  .visible-input {
+    margin-left: 0.5em;
+    width: 100%;
+    border-bottom: 2px solid var(--orange);
+  }

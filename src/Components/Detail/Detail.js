@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 
-import Loading from './Loading';
+import styles from './Detail.css';
 
-import { getSingleItem } from '../store/actions';
+import { Loading } from '../../Components';
+
+import { getSingleItem } from '../../store/actions';
+
 
 class Detail extends Component {
     constructor(props) {
@@ -24,13 +26,13 @@ class Detail extends Component {
     }
 
     displayInfo = (item, info) => {
-        return <div className="detail-flex">
+        return <div className={styles["detail-flex"]}>
             {info === 'created_by' ?
-                <p><b>Created by: </b></p> :
+                item[info].length > 0 ? <p><b>Created by: </b></p> : null :
                 <p><b>{item[info].length > 1 ? 'Genres: ' : 'Genre: '}</b></p>}
 
             {item[info] && item[info].map((c, i) => {
-                return <p className="detail-flex-item" key={i}>{c.name}</p>
+                return <p className={styles["detail-flex-item"]} key={i}>{c.name}</p>
             })}
         </div>
     }
@@ -39,25 +41,27 @@ class Detail extends Component {
         const { loading, item } = this.props;
         return (<div>
             {loading && <Loading />}
-            {item && <div><div className="full" style={{
+            {item && <div><div className={styles.full} style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
             }}>
             </div>
-                <div className="detail-info">
+                <div className={styles["detail-info"]}>
 
-                    <img className="detail-image" src={item.poster_path == null ? '/images/no-image-available.jpg' : `https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />
+                    <img className={styles["detail-image"]} src={item.poster_path == null ? '/images/no-image-available.jpg' : `https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />
 
-                    <div className="detail-about">
+                    <div className={styles["detail-about"]}>
 
                         {(item.title || item.name) && <h3>{item.title ? item.title : item.name}</h3>}
 
-                        {item.vote_average && <p>{item.vote_average} <i className="fa fa-star"></i></p>}
+                        {item.vote_average && <p>{item.vote_average} <i
+                            className="fa fa-star"
+                            style={{ color: "rgb(167, 111, 60)" }}></i></p>}
 
                         {item.created_by && this.displayInfo(item, 'created_by')}
 
                         {item.genres && this.displayInfo(item, 'genres')}
 
-                        <b className="detail-overview">{item.overview}</b>
+                        <b className={styles["detail-overview"]}>{item.overview}</b>
 
                     </div>
                 </div>

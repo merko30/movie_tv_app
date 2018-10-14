@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
+import history from '../../history';
 
-import history from '../history';
-import { search } from '../store/actions';
+import styles from './Search.css';
 
+import { search } from '../../store/actions';
 
 let timeout = 0;
 
@@ -18,6 +18,8 @@ class Search extends Component {
     };
   }
 
+
+
   search = () => {
     clearTimeout(timeout);
     const { searchTerm } = this.state;
@@ -25,7 +27,7 @@ class Search extends Component {
       timeout = setTimeout(() => {
         history.push('/search');
         this.props.search(searchTerm);
-      }, 3000);
+      }, 2000);
     }
   }
 
@@ -36,15 +38,21 @@ class Search extends Component {
   }
 
   handleClass = (e) => {
-    e.target.nextSibling.classList.toggle('visible-input');
+    e.target.nextSibling.classList.toggle(styles['visible-input']);
   }
 
   render() {
     const { searchTerm } = this.state;
     return (
-      <div className="search-container">
-        <i className="fa fa-search fa-2x" onClick={this.handleClass}></i>
-        <input className="search-input" type="text" placeholder="Search..." onChange={this.handleChange} value={searchTerm} onKeyDown={() => { this.search() }} />
+      <div className={styles['search-container']}>
+
+        <i
+          className="fa fa-search"
+          style={{ color: "rgb(167, 111, 60)", cursor: "pointer" }}
+          onClick={this.handleClass}></i>
+
+        <input className={styles["search-input"]} type="text" placeholder="Search..." onChange={this.handleChange} value={searchTerm} onKeyDown={() => { this.search() }} />
+
       </div>
     );
   }

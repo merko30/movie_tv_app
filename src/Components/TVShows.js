@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import Grid from './Grid';
-import Loading from './Loading';
+import { Grid, Loading } from '../Components';
 
 import { fetchTVShows } from '../store/actions';
 

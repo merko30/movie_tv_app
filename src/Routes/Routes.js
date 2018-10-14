@@ -2,11 +2,8 @@ import React from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
-import TVShows from '../Components/TVShows';
-import Detail from '../Components/Detail';
-import Movies from '../Components/Movies';
-import SearchResults from '../Components/SearchResults';
-import NotFound from '../Components/NotFound';
+
+import { TVShows, Detail, Movies, SearchResults, NotFound } from '../Components';
 
 
 const Routes = () => {
