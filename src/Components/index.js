@@ -1,7 +1,5 @@
-export { default as Movies } from './Movies';
+export { default as Home } from './Home';
 export { default as NotFound } from './NotFound';
-export { default as SearchResults } from './SearchResults';
-export { default as TVShows } from './TVShows';
 
 export { default as Header } from './Header/Header';
 export { default as Error } from './Error/Error';

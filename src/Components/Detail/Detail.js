@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import styles from './Detail.css';
 
@@ -38,13 +39,16 @@ class Detail extends Component {
     }
 
     render() {
-        const { loading, item } = this.props;
+        const { loading, item, location } = this.props;
         return (<div>
             {loading && <Loading />}
             {item && <div><div className={styles.full} style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
             }}>
             </div>
+
+                <Link to={{ pathname: '/', state: { prev: location.pathname } }} className={styles.back}><i className="fa fa-arrow-left"></i></Link>
+
                 <div className={styles["detail-info"]}>
 
                     <img className={styles["detail-image"]} src={item.poster_path == null ? '/images/no-image-available.jpg' : `https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />
@@ -75,7 +79,6 @@ class Detail extends Component {
 const mapStateToProps = state => {
     return {
         item: state.single_active,
-        active: state.active,
         loading: state.loading
     }
 }

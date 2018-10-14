@@ -10,7 +10,8 @@ import {
     SEARCH_ALL_FAIL,
     GET_SINGLE,
     GET_SINGLE_SUCCESS,
-    GET_SINGLE_FAIL
+    GET_SINGLE_FAIL,
+    SET_ACTIVE
 } from "./actionTypes";
 
 
@@ -79,4 +80,8 @@ export const getSingleItem = (id, active, mediaType) => (dispatch) => {
         }
     }
 
+}
+
+export const setActive = (list) => (dispatch) => {
+    dispatch({ type: SET_ACTIVE, payload: list })
 }

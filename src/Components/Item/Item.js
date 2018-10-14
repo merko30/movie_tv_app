@@ -7,7 +7,7 @@ import styles from './Item.css';
 const Item = ({ active, item: { name, title, poster_path, vote_average, id, media_type } }) => {
   return (
     <Link
-      to={{ pathname: `${active}/details/${id}`, state: { mediaType: media_type } }}
+      to={{ pathname: `${active}/details/${id}`, state: { mediaType: media_type, active: active } }}
       className={styles["grid-item"]}
       style={{
         backgroundImage: poster_path == null ? 'url(/images/no-image-available.jpg)' : `url(https://image.tmdb.org/t/p/original${poster_path})`
