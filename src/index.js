@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
-import logger from 'redux-logger';
 
 import history from './history';
 import reducer from './store/reducer';
@@ -14,7 +13,7 @@ import App from './App';
 import thunk from 'redux-thunk';
 
 
-export const store = createStore(reducer, applyMiddleware(thunk, logger));
+export const store = createStore(reducer, applyMiddleware(thunk));
 
 
 ReactDOM.render(

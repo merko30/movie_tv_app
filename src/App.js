@@ -7,7 +7,7 @@ import Routes from './Routes/Routes';
 class App extends Component {
 
   render() {
-    return (<div>
+    return (<div className={styles.bg} style={{ background: `url(images/bg.jpg)` }}>
       <div className={styles.container}>
         <Routes />
       </div>

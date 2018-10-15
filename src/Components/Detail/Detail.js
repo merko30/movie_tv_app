@@ -6,6 +6,8 @@ import styles from './Detail.css';
 
 import { Loading } from '../../Components';
 
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
+
 import { getSingleItem } from '../../store/actions';
 
 
@@ -30,7 +32,7 @@ class Detail extends Component {
         return <div className={styles["detail-flex"]}>
             {info === 'created_by' ?
                 item[info].length > 0 ? <p><b>Created by: </b></p> : null :
-                <p><b>{item[info].length > 1 ? 'Genres: ' : 'Genre: '}</b></p>}
+                <p><b>{item[info] && item[info].length > 1 ? 'Genres: ' : 'Genre: '}</b></p>}
 
             {item[info] && item[info].map((c, i) => {
                 return <p className={styles["detail-flex-item"]} key={i}>{c.name}</p>
@@ -39,25 +41,28 @@ class Detail extends Component {
     }
 
     render() {
-        const { loading, item, location } = this.props;
+        const { item, location } = this.props;
         return (<div>
-            {loading && <Loading />}
-            {item && <div><div className={styles.full} style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
+
+            {item ? <div><div className={styles.full} style={{
+                backgroundImage: item.backdrop_path == null ? `url(/images/bg.jpg)` : `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
             }}>
             </div>
 
-                <Link to={{ pathname: '/', state: { prev: location.pathname } }} className={styles.back}><i className="fa fa-arrow-left"></i></Link>
+                <Link to={{ pathname: '/', state: { prev: location.pathname } }} className={styles.back}><i className="fa fa-arrow-left" style={{ color: "black" }}></i></Link>
 
                 <div className={styles["detail-info"]}>
 
-                    <img className={styles["detail-image"]} src={item.poster_path == null ? '/images/no-image-available.jpg' : `https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />
+                    {item.videos.results.length > 0 ?
+                        item.videos.results[0].site === 'YouTube' && <VideoPlayer src={`https://www.youtube.com/watch?v=${item.videos.results[0].key}`} />
+                        :
+                        <img className={styles["detail-image"]} src={item.poster_path == null ? '/images/no-image-available.jpg' : `https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />}
 
                     <div className={styles["detail-about"]}>
 
                         {(item.title || item.name) && <h3>{item.title ? item.title : item.name}</h3>}
 
-                        {item.vote_average && <p>{item.vote_average} <i
+                        {(item.vote_average || item.vote_average !== 0) && <p>{item.vote_average} <i
                             className="fa fa-star"
                             style={{ color: "rgb(167, 111, 60)" }}></i></p>}
 
@@ -69,7 +74,7 @@ class Detail extends Component {
 
                     </div>
                 </div>
-            </div>}
+            </div> : <Loading />}
 
         </div>
         );
@@ -78,8 +83,7 @@ class Detail extends Component {
 
 const mapStateToProps = state => {
     return {
-        item: state.single_active,
-        loading: state.loading
+        item: state.single_active
     }
 }
 

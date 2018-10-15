@@ -17,7 +17,7 @@ import {
 const initialState = {
     movies: [],
     tv: [],
-    searchResults: [],
+    search: [],
     active: [],
     active_type: "tv",
     loading: false,
@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 movies: action.payload,
-                active_type: "movie"
+                active_type: "movies"
             }
         case FETCH_MOVIES_FAIL:
             return {
@@ -73,7 +73,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                searchResults: action.payload,
+                search: action.payload,
                 active_type: "search"
             }
         case SEARCH_ALL_FAIL:
@@ -102,7 +102,8 @@ const reducer = (state = initialState, action) => {
         case SET_ACTIVE: {
             return {
                 ...state,
-                active: [...state[action.payload]]
+                active: [...state[action.payload]],
+                active_type: action.payload
             }
         }
         default:

@@ -9,27 +9,36 @@ import { fetchTVShows, fetchMovies, setActive } from '../store/actions';
 class Movies extends Component {
 
     componentWillMount() {
-        this.props.fetchTVShows();
-        this.props.fetchMovies();
+        if (this.props.active === 'search') {
+            this.props.setActive('search');
+        } else if (this.props.active === 'movies') {
+            this.props.setActive('movies');
+        }
+
+
+        else {
+            this.props.fetchTVShows();
+            this.props.fetchMovies();
+        }
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.shows !== this.props.shows) {
+        if (prevProps.search !== this.props.search) {
+            this.props.setActive('search');
+        } else if (prevProps.shows !== this.props.shows) {
             this.props.setActive('tv');
-        } else if (prevProps.search !== this.props.search) {
-            this.props.setActive('searchResults');
         }
+
     }
 
-
-
     render() {
-        const { data, active } = this.props;
+        const { data, active, loading } = this.props;
         return (
             <div>
                 <Header search={false} />
-                {data ? <Grid list={data} active={active} /> : <Loading />}
+                {data && <Grid list={data} active={active} />}
+                {loading && <Loading />}
             </div>
         )
     }
@@ -39,8 +48,9 @@ const mapStateToProps = state => {
     return {
         data: state.active,
         shows: state.tv,
-        search: state.searchResults,
-        active: state.active_type
+        search: state.search,
+        active: state.active_type,
+        loading: state.loading
     }
 }
 

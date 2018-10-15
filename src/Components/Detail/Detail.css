@@ -26,16 +26,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0, 0.5);
   }
   
   .detail-info {
-    margin: 14em 2em 2em 2em;
+    margin: 10em 2em 2em 2em;
     color: white;
     background-color: rgba(255,255,255,0.2);
-    text-align: center;
     padding: 2em;
-    display: flex;
     z-index: 20;  
     position:relative;
     height: 100%;
@@ -58,7 +55,7 @@
   
   .detail-about {
     text-align: start;
-    margin: 0.5em;
+    margin: 0.5em 0;
   }
   
   .detail-overview {
@@ -92,14 +89,16 @@
   }
   
   .detail-image {
-    height: 200px;
+    height: 400px;
+    width: 300px;
     border: 2px solid #ededed;
+    align-self: flex-start!important;
   }
 
   .back {
     position: absolute;
-    top: 1em;
-    left: 1em;
+    top: 1.5em;
+    left: 1.8em;
     background-color: white;
     width: 60px;
     height: 60px;

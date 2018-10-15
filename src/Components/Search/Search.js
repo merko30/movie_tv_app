@@ -27,7 +27,7 @@ class Search extends Component {
         this.setState({
           timeout: setTimeout(() => {
             this.props.search(this.state.searchTerm)
-          }, 3000)
+          }, 1000)
         })
       } else if (this.state.searchTerm.length === 0) {
         this.props.setActive('tv')
@@ -46,7 +46,7 @@ class Search extends Component {
 
         <i
           className="fa fa-search"
-          style={{ color: "rgb(167, 111, 60)", cursor: "pointer" }}
+          style={{ color: "white", cursor: "pointer" }}
           onClick={this.handleClass}></i>
 
         <input className={styles["search-input"]} type="text" placeholder="Search..." onChange={this.handleChange} name="searchTerm" value={searchTerm} />

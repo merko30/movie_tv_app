@@ -16,22 +16,24 @@ class APIService {
     }
 
     static getSingleMovie = (id) => {
-        return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US&page=1`)
+        return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US&page=1&append_to_response=videos`)
             .then(res => res.json())
             .catch(err => console.log(err))
     }
 
     static getSingleTVShow = (id) => {
-        return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US&page=1`)
+        return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US&page=1&append_to_response=videos`)
             .then(res => res.json())
             .catch(err => console.log(err))
     }
+
 
     static searchByText = (text) => {
         return fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${text}&language=en-US&page=1`)
             .then(res => res.json())
             .catch(err => console.log(err))
     }
+
 
 
 
