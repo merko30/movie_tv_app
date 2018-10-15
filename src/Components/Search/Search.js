@@ -49,7 +49,13 @@ class Search extends Component {
           style={{ color: "white", cursor: "pointer" }}
           onClick={this.handleClass}></i>
 
-        <input className={styles["search-input"]} type="text" placeholder="Search..." onChange={this.handleChange} name="searchTerm" value={searchTerm} />
+        <input
+          className={styles["search-input"]}
+          type="text"
+          placeholder="Search..."
+          onChange={this.handleChange}
+          name="searchTerm"
+          value={searchTerm} />
 
       </div>
     );

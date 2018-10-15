@@ -16,17 +16,28 @@ class Header extends React.Component {
     }
 
     render() {
-        return (<div className={window.location.pathname.indexOf('detail') !== -1 ? styles.header : styles["header-bg"]}>
-            <div className={window.location.pathname.indexOf('detail') !== -1 ? styles.header : styles["header-container"]}>
+        return (
+            <div
+                className={window.location.pathname.indexOf('detail') !== -1 ?
+                    styles.header :
+                    styles["header-bg"]}>
+                <div
+                    className={window.location.pathname.indexOf('detail') !== -1 ?
+                        styles.header :
+                        styles["header-container"]}>
 
-                <div className={styles.buttons}>
-                    <button className={styles.button} onClick={() => { this.setData('movies') }}>Movies</button>
-                    <button className={styles.button} onClick={() => { this.setData('tv') }}>TV shows</button>
+                    <div className={styles.buttons}>
+                        <button
+                            className={styles.button}
+                            onClick={() => { this.setData('movies') }}>Movies</button>
+                        <button
+                            className={styles.button}
+                            onClick={() => { this.setData('tv') }}>TV shows</button>
+                    </div>
+                    <Search />
+                    <Error />
                 </div>
-                <Search />
-                <Error />
             </div>
-        </div>
         )
     }
 }

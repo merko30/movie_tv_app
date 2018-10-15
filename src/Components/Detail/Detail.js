@@ -31,7 +31,9 @@ class Detail extends Component {
     displayInfo = (item, info) => {
         return <div className={styles["detail-flex"]}>
             {info === 'created_by' ?
-                item[info].length > 0 ? <p><b>Created by: </b></p> : null :
+                item[info].length > 0 ?
+                    <p><b>Created by: </b></p> :
+                    null :
                 <p><b>{item[info] && item[info].length > 1 ? 'Genres: ' : 'Genre: '}</b></p>}
 
             {item[info] && item[info].map((c, i) => {
@@ -41,15 +43,18 @@ class Detail extends Component {
     }
 
     render() {
-        const { item, location } = this.props;
+        const { item } = this.props;
         return (<div>
 
-            {item ? <div><div className={styles.full} style={{
-                backgroundImage: item.backdrop_path == null ? `url(/images/bg.jpg)` : `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
-            }}>
+            {item ? <div><div className={styles.full}
+                style={{
+                    backgroundImage: item.backdrop_path == null ?
+                        `url(/images/bg.jpg)` :
+                        `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
+                }}>
             </div>
 
-                <Link to={{ pathname: '/', state: { prev: location.pathname } }} className={styles.back}><i className="fa fa-arrow-left" style={{ color: "black" }}></i></Link>
+                <Link to='/' className={styles.back}><i className="fa fa-arrow-left" style={{ color: "black" }}></i></Link>
 
                 <div className={styles["detail-info"]}>
 
