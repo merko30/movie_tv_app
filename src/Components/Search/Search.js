@@ -29,7 +29,7 @@ class Search extends Component {
             this.props.search(this.state.searchTerm)
           }, 1000)
         })
-      } else if (this.state.searchTerm.length === 0) {
+      } else {
         this.props.setActive('tv')
       }
     })
