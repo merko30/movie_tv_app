@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Grid, Loading, Header } from '../Components';
+import { Grid, Loading } from '../Components';
 
 import { fetchTVShows, fetchMovies, setActive } from '../store/actions';
 
@@ -33,12 +33,11 @@ class Movies extends Component {
     }
 
     render() {
-        const { data, active, loading } = this.props;
+        const { data, active } = this.props;
         return (
-            <div>
-                <Header search={false} />
-                {data && <Grid list={data} active={active} />}
-                {loading && <Loading />}
+            <div style={{ marginTop: "1em", height: "100%" }}  >
+                {data ? <Grid list={data} active={active} />
+                    : <Loading />}
             </div>
         )
     }

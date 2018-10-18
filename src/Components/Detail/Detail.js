@@ -46,13 +46,14 @@ class Detail extends Component {
         const { item } = this.props;
         return (<div>
 
-            {item ? <div><div className={styles.full}
-                style={{
-                    backgroundImage: item.backdrop_path == null ?
-                        `url(/images/bg.jpg)` :
-                        `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
-                }}>
-            </div>
+            {item ? <div>
+
+                <div className={styles.full}
+                    style={{
+                        background: item.backdrop_path !== null &&
+                            `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
+                    }}>
+                </div>
 
                 <Link to='/' className={styles.back}><i className="fa fa-arrow-left" style={{ color: "black" }}></i></Link>
 

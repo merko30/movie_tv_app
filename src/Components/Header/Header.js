@@ -10,34 +10,28 @@ import { setActive } from '../../store/actions';
 
 class Header extends React.Component {
 
-
-    setData = (l) => {
+    setData = (l, e) => {
+        e.target.classList.toggle('active');
         this.props.setActive(l);
     }
 
     render() {
         return (
-            <div
-                className={window.location.pathname.indexOf('detail') !== -1 ?
-                    styles.header :
-                    styles["header-bg"]}>
-                <div
-                    className={window.location.pathname.indexOf('detail') !== -1 ?
-                        styles.header :
-                        styles["header-container"]}>
-
+            <header >
+                <div className={styles.container}>
                     <div className={styles.buttons}>
                         <button
                             className={styles.button}
-                            onClick={() => { this.setData('movies') }}>Movies</button>
+                            onClick={this.setData.bind(this, 'movies')}>Movies</button>
                         <button
                             className={styles.button}
-                            onClick={() => { this.setData('tv') }}>TV shows</button>
+                            onClick={this.setData.bind(this, 'tv')}>TV shows</button>
                     </div>
                     <Search />
                     <Error />
-                </div>
-            </div>
+                </div >
+            </header >
+
         )
     }
 }

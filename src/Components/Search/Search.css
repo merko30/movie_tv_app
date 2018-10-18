@@ -1,7 +1,8 @@
 @import '../../main.css';
 
 .search-input {
-    width: 0;
+    width: 100%;
+    opacity: 0;
     outline: none;
     border: 2px solid transparent;
     position: relative;
@@ -15,10 +16,10 @@
   }
   
   .search-container {
-    margin: 3em 0 1em 0;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 50vw;
+    padding: 0.5em;
   }
   
   .search-container > .fa{
@@ -31,6 +32,6 @@
   
   .visible-input {
     margin-left: 0.5em;
-    width: 100%;
+    opacity: 1;
     border-bottom: 2px solid white;
   }
