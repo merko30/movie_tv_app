@@ -14,4 +14,3 @@ export const GET_SINGLE = "GET_SINGLE";
 export const GET_SINGLE_SUCCESS = "GET_SINGLE_SUCCESS";
 export const GET_SINGLE_FAIL = "GET_SINGLE_FAIL";
 
-export const SET_ACTIVE = "SET_ACTIVE";

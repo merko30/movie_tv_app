@@ -10,8 +10,7 @@ import {
     SEARCH_ALL_FAIL,
     GET_SINGLE,
     GET_SINGLE_SUCCESS,
-    GET_SINGLE_FAIL,
-    SET_ACTIVE
+    GET_SINGLE_FAIL
 } from "./actionTypes";
 
 
@@ -19,7 +18,6 @@ import APIService from '../API_service/api_service';
 
 export const fetchMovies = () => dispatch => {
     dispatch({ type: FETCH_MOVIES });
-
     APIService.getTopRatedMovies().then((data) =>
         dispatch({ type: FETCH_MOVIES_SUCCESS, payload: data.results })
     ).catch(error => {
@@ -30,7 +28,6 @@ export const fetchMovies = () => dispatch => {
 
 export const fetchTVShows = () => dispatch => {
     dispatch({ type: FETCH_TVSHOWS });
-
     APIService.getTopRatedTVShows().then((data) =>
         dispatch({ type: FETCH_TVSHOWS_SUCCESS, payload: data.results })
     ).catch(error => {
@@ -41,7 +38,6 @@ export const fetchTVShows = () => dispatch => {
 
 export const search = (term) => dispatch => {
     dispatch({ type: SEARCH_ALL });
-
     APIService.searchByText(term).then((data) =>
         dispatch({ type: SEARCH_ALL_SUCCESS, payload: data.results })
     ).catch(error => {
@@ -52,7 +48,7 @@ export const search = (term) => dispatch => {
 
 export const getSingleItem = (id, active, mediaType) => (dispatch) => {
     dispatch({ type: GET_SINGLE });
-    if (active === "movies") {
+    if (active === "movie") {
         APIService.getSingleMovie(id).then((data) => {
             dispatch({ type: GET_SINGLE_SUCCESS, payload: data })
         }).catch(error => {
@@ -82,6 +78,3 @@ export const getSingleItem = (id, active, mediaType) => (dispatch) => {
 
 }
 
-export const setActive = (list) => (dispatch) => {
-    dispatch({ type: SET_ACTIVE, payload: list })
-}

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import styles from './Detail.css';
 
-import { Loading } from '../../Components';
-
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 import { getSingleItem } from '../../store/actions';
+
+import { VideoPlayer, Loading, BackButton } from '../../Components';
 
 
 class Detail extends Component {
@@ -19,12 +17,11 @@ class Detail extends Component {
     }
 
     componentWillMount = () => {
-        const { match: { params: { id } } } = this.props;
-        let active = this.props.location.pathname.split('/')[1]
-        if (active === 'search') {
-            this.props.getSingleItem(id, active, this.props.location.state.mediaType);
+        const { match: { params: { id } }, getSingleItem, location: { state: { from, mediaType } }, } = this.props;
+        if (from === 'search') {
+            getSingleItem(id, from, mediaType);
         } else {
-            this.props.getSingleItem(id, active, 'not-important');
+            getSingleItem(id, from, 'not-important');
         }
     }
 
@@ -43,19 +40,21 @@ class Detail extends Component {
     }
 
     render() {
-        const { item } = this.props;
+        const { item, loading, location: { state: { from, mediaType } } } = this.props;
+        let isSearch = typeof mediaType !== 'undefined' || null;
         return (<div>
+            {loading && <Loading />}
+            {item && <div>
 
-            {item ? <div>
-
-                <div className={styles.full}
+                <div
+                    className={styles.full}
                     style={{
                         background: item.backdrop_path !== null &&
                             `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`
                     }}>
                 </div>
 
-                <Link to='/' className={styles.back}><i className="fa fa-arrow-left" style={{ color: "black" }}></i></Link>
+                <BackButton from={from} isSearch={isSearch} />
 
                 <div className={styles["detail-info"]}>
 
@@ -80,17 +79,13 @@ class Detail extends Component {
 
                     </div>
                 </div>
-            </div> : <Loading />}
+            </div>}
 
         </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        item: state.single_active
-    }
-}
+const mapStateToProps = ({ single, loading }) => ({ item: single, loading })
 
 export default connect(mapStateToProps, { getSingleItem })(Detail);

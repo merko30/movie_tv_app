@@ -1,37 +1,16 @@
 @import '../../main.css';
 
-.search-input {
-    width: 100%;
-    opacity: 0;
-    outline: none;
-    border: 2px solid transparent;
-    position: relative;
-    transition: all 0.5s ease-in-out;
-    color: white;
-    background-color: transparent;
-  }
 
-  .search-input::placeholder {
-    color: white;
-  }
-  
-  .search-container {
-    display: flex;
-    align-items: center;
-    width: 50vw;
-    padding: 0.5em;
-  }
-  
-  .search-container > .fa{
-    cursor: pointer;
-    color:  white!important;
-  }
+.container {
+  margin: 0 1em;
+}
 
-  
-
-  
-  .visible-input {
-    margin-left: 0.5em;
-    opacity: 1;
-    border-bottom: 2px solid white;
+.input {
+  padding: 1.5em;
+  border-radius: 0.5em;
+  outline: none;
+  border: none;
+  width: 100%;
+  display: block;
+  margin: 2em 0;
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './main.css';
 
 import { Header } from './Components'
-import Routes from './Routes/Routes';
+import Routes from './Routes';
 
 class App extends Component {
 

@@ -1,12 +1,9 @@
-export { default as Home } from './Home';
-export { default as NotFound } from './NotFound';
-
-export { default as Header } from './Header/Header';
-export { default as Error } from './Error/Error';
+export { default as Header } from './Header';
+export { default as Error } from './Error';
 export { default as Grid } from './Grid/Grid';
 export { default as Item } from './Item/Item';
-export { default as Search } from './Search/Search';
-export { default as Detail } from './Detail/Detail';
-export { default as Loading } from './Loading/Loading';
+export { default as Search } from './Search';
+export { default as Loading } from './Loading';
+export { default as VideoPlayer } from './VideoPlayer';
+export { default as BackButton } from './BackButton';
 
-export * from './index';

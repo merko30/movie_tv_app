@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import styles from './Item.css';
 
-const Item = ({ active, item: { name, title, poster_path, vote_average, id, media_type } }) => {
+const Item = ({ item: { name, title, poster_path, vote_average, id, media_type } }) => {
+  const path = window.location.pathname;
+  const from = path.includes('movie') ? 'movie' : path.includes('tv') ? 'tv' : media_type;
   return (
     <Link
-      to={{ pathname: `${active}/details/${id}`, state: { mediaType: media_type, active: active } }}
+      to={{ pathname: `/${from}/details/${id}`, state: { mediaType: media_type, from } }}
       className={styles["grid-item"]}
       style={{
         backgroundImage: poster_path == null ?
@@ -30,4 +32,4 @@ const Item = ({ active, item: { name, title, poster_path, vote_average, id, medi
   )
 }
 
-export default Item;
+export default withRouter(Item);
